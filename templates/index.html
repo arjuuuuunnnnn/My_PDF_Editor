@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF to Word Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #f0f9e0, #dbf4c5); /* Gradient background */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Box shadow for depth */
+            background-color: #ffffff; /* White background */
+            max-width: 400px; /* Limit container width */
+            width: 100%; /* Full width */
+        }
+        h1 {
+            color: #4caf50; /* Green text color */
+        }
+        form {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        input[type="file"] {
+            padding: 12px;
+            border: 2px solid #4caf50; /* Green border */
+            border-radius: 10px; /* Rounded corners */
+            outline: none;
+            font-size: 16px;
+            width: 80%;
+            margin-bottom: 20px; /* Spacing between input and button */
+        }
+        button[type="submit"] {
+            padding: 20px 40px; /* Increased padding for larger size */
+            background-color: #1be914; /* Dark button color */
+            color: #ffffff; /* White button text color */
+            border: none;
+            border-radius: 25px; /* Rounded corners */
+            cursor: pointer;
+            font-size: 16px; /* Font size */
+            transition: background-color 0.3s ease;
+        }
+        button[type="submit"]:hover {
+            background-color: #3a09eb; /* Darker color on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PDF to Word Converter</h1>
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="file" id="fileInput" name="file" accept=".pdf">
+            <button type="submit" onclick="convertPDF()">Convert</button>
+        </form>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        function convertPDF() {
+            var fileInput = document.getElementById('fileInput');
+            var file = fileInput.files[0];
+            if (file) {
+                var formData = new FormData();
+                formData.append('file', file);
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '/upload', true);
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        document.getElementById('message').innerHTML = 'Conversion successful!';
+                    } else {
+                        document.getElementById('message').innerHTML = 'Error: ' + xhr.statusText;
+                    }
+                };
+                xhr.onerror = function() {
+                    document.getElementById('message').innerHTML = 'Error uploading file.';
+                };
+                xhr.send(formData);
+            } else {
+                document.getElementById('message').innerHTML = 'Please select a file.';
+            }
+        }
+    </script>
+</body>
+</html>
