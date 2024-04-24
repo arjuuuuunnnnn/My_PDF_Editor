@@ -1,0 +1,35 @@
+.homepage-container {
+  text-align: center;
+  padding-top: 14%;
+  background-color: #f1fafb;
+  padding-bottom: 32px;
+}
+
+.title{
+  font-size: 42px;
+}
+
+.plants{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.plant-left{
+  /* position: fixed; */
+}
+
+.plant-right{
+  float: right;
+  position: relative;
+  bottom: 0;
+}
+
+.plant-center{
+    width:100%;
+    position: absolute;
+    left: 0;
+    bottom: 24px; 
+    text-align: center;
+}
