@@ -58,3 +58,4 @@ virtualenv==20.0.21
 virtualenv-clone==0.5.4
 Werkzeug==1.0.1
 zipp==3.1.0
+flask
